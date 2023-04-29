@@ -13,7 +13,7 @@ app.use("/user",userrouter)
 app.use(auth)
 app.use("/note",userrouter)
 
-app.listen(4500,async ()=>{
+app.listen(3000,async ()=>{
     
         await connection
         console.log("connected to db")
