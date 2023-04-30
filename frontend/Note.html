@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+#input{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+}
+input{
+    display: block;
+    width: 300px;
+    margin-top: 20px;
+   
+
+
+}
+
+h1{
+    text-align: center;
+}
+
+
+</style>
+
+
+
+<body>
+
+    <h1>Add Note</h1>
+    <div id="input">
+        <input type="text" class="native" placeholder="Enter your birthplace">
+        <input type="email" class="note" placeholder="Enter your Note">
+
+
+        <button id="submit">Click tosignup</button>
+
+    </div>
+    
+</body>
+<script>
+    let native=document.querySelector(".native")
+    let note=document.querySelector(".note")
+
+    let button=document.getElementById("submit")
+   
+   
+   button.addEventListener("click",function(e){
+       e.preventDefault()
+       let payload={
+           native:native.value,
+           notes:note.value,
+       
+   
+       }
+   
+       fetch("http://localhost:4500/note/add",{
+           method:"POST",
+           headers:{
+               "Authorization":localStorage.getItem("token"),
+               "content-type":"application/json"
+           },
+           body:JSON.stringify(payload)
+   
+       })
+       .then((res)=>{
+           return res.json()
+       })
+       .then((res)=>{
+           console.log(res)
+          
+       })
+       console.log(payload)
+   
+   })
+   
+   </script>
+
+
+</html>

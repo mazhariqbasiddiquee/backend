@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+<style>
+    h1{
+        text-align: center;
+    }
+    #input{
+        align-items: center;
+        display: flex;
+        justify-content: center;
+
+    }
+    input{
+        display: block;
+        width: 300px;
+        margin-top: 20px;
+       
+
+
+    }
+</style>
+<body>
+    
+    <h1>Signup</h1>
+    <div id="input">
+        <input type="text" class="Name" placeholder="Enter your Name">
+        <input type="email" class="email" placeholder="Enter your password">
+        <input type="Password" class="password" placeholder="Enter your Password">
+
+        <button id="submit">Click tosignup</button>
+
+    </div>
+   
+   
+
+</body>
+
+<script>
+ let name=document.querySelector(".Name")
+ let email=document.querySelector(".email")
+ let password=document.querySelector(".password")
+ let button=document.getElementById("submit")
+
+
+button.addEventListener("click",function(e){
+    e.preventDefault()
+    let payload={
+        Name:name.value,
+        Email:email.value,
+        Password:password.value
+
+    }
+
+    fetch("http://localhost:4500/user/signin",{
+        method:"POST",
+        headers:{
+            "content-type":"application/json"
+        },
+        body:JSON.stringify(payload)
+
+    })
+    .then((res)=>{
+        return res.json()
+    })
+    .then((res)=>{
+        console.log(res)
+     localStorage.setItem("token",res.token)
+    })
+
+})
+
+</script>
+</html>
