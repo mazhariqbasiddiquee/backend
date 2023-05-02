@@ -23,14 +23,11 @@ app.listen(4500,async(err)=>{
 
 
 
-    try{
+    
         await mongoose.connect("mongodb+srv://mazhariqbal:iqbal@cluster0.hrvyke3.mongodb.net/evaluation?retryWrites=true&w=majority")  
        console.log("connected to server")
-    }
-    catch(err)
-    {
-        console.log(err)
-    }
+    
+    
     
 
 })
